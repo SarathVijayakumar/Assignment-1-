@@ -40,11 +40,132 @@
 		<h1>it's quick and easy</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
-				<form action="#" method="post">
-					<input class="text" type="text" name="Username" placeholder="Username" required="">
+				<form id="myform" action="index.html" >
+					<script src="javascripts/signup.js"></script>
+					
 					<input class="text email" type="email" name="email" placeholder="Email" required="">
-					<input class="text" type="password" name="password" placeholder="Password" required="">
-					<input class="text w3lpass" type="password" name="password" placeholder="Confirm Password" required="">
+
+
+
+					<input type="password" id="password" placeholder="Enter Password" class="text" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+					<span id="StrengthDisp" class="badge displayBadge">Weak</span>
+					<style>
+						 .displayBadge{
+            margin-top: 5%; 
+            display: none; 
+            text-align :center;
+		   margin-right: 6%;
+        }
+					</style>
+					<br>
+					<input type="password" id="confirm_password" placeholder="Confirm Password" class="text" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+
+  
+
+					<div id="message">
+					  <h3>Password must contain the following:</h3>
+					  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+					  <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+					  <p id="number" class="invalid">A <b>number</b></p>
+					  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+					</div>
+
+
+					
+					<script>
+						let timeout;
+	
+					
+						let password = document.getElementById('password')
+						let strengthBadge = document.getElementById('StrengthDisp')
+					
+						// The strong and weak password Regex pattern checker
+					
+						let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+						let mediumPassword = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))')
+						
+						function StrengthChecker(PasswordParameter){
+					
+							if(strongPassword.test(PasswordParameter)) {
+								strengthBadge.style.backgroundColor = "green"
+								strengthBadge.textContent = 'Strong'
+							} else if(mediumPassword.test(PasswordParameter)){
+								strengthBadge.style.backgroundColor = 'blue'
+								strengthBadge.textContent = 'Medium'
+							} else{
+								strengthBadge.style.backgroundColor = 'red'
+								strengthBadge.textContent = 'Weak'
+							}
+						}
+					
+					
+						password.addEventListener("input", () => {
+					
+					
+							strengthBadge.style.display= 'block'
+							clearTimeout(timeout);
+					
+					
+							timeout = setTimeout(() => StrengthChecker(password.value), 500);
+					
+					
+							if(password.value.length !== 0){
+								strengthBadge.style.display != 'block'
+							} else{
+								strengthBadge.style.display = 'none'
+							}
+						});
+					
+					
+					</script>
+	
+
+
+					
+                     
+
+
+
+				
+
+
+
+
+					<script>
+						var myInput = document.getElementById("password");
+						
+
+
+
+						var confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(myInput.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+myInput.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+</script>
+					
+						
+																	<label class="form-label" for="psw"></label>
+
+
+<input type="text" id="myform_phone" placeholder="Enter Number"  name="phone" />
+
+
+
+  <div id="phone_error" class="error hidden">Please enter a valid phone number</div>
+  <label class="form-label" for="psw"></label>
+
+
+
+				  
+
 					<div class="wthree-text">
 						<label class="anim">
 							<input type="checkbox" class="checkbox" required="">
@@ -57,11 +178,11 @@
 				<p>Don't have an Account? <a href="#"> Login Now!</a></p>
 			</div>
 		</div>
-		<!-- copyright -->
+		
 		<div class="colorlibcopy-agile">
 			<p>Traveling – it leaves you speechless, then turns you into a storyteller” – Ibn Battuta</p>
 		</div>
-		<!-- //copyright -->
+		
 		<ul class="colorlib-bubbles">
 			<li></li>
 			<li></li>
